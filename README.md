@@ -17,9 +17,8 @@ Depth Map은 컴퓨터 그래픽스에서 요긴하게 이용되는 요소입니
 그렇기에 게임에서 볼 수 있는 각종 그래픽 효과들을 만들 때도 많이 사용되고 있습니다.
 현대의 대부분의 GPU는 하드웨어 레벨에서 이를 위한 depth testing 지원하고 있습니다.
 
-* Depth Map을 활용한 Outline 효과
-![!depth_outline](./readme_img/depthoutlines.png)
-picture from : https://www.ronja-tutorials.com/post/019-postprocessing-outlines/
+* Depth Map을 활용한 Outline 효과 : https://www.ronja-tutorials.com/post/019-postprocessing-outlines/
+* Pure Depth SSAO : https://theorangeduck.com/page/pure-depth-ssao
 
 하지만 사진등은(비트맵) 픽셀에 대한 정보만을 가지고 있지 깊이 정보를 가지고 있지 않기 때문에
 일반 사진, 영상에서 이 depth을 그냥 만들어낼 수는 없습니다.
