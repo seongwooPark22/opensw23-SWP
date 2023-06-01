@@ -72,13 +72,16 @@ pip install -r requirements.txt
 
 Video Inference는 Youtube 영상의 URL을 사용하기때문에
 이를 실행하기 위해서는 yt-dlp를 설치해야합니다.
-`pip install yt-dlp`
+```
+pip install yt-dlp
+```
 
 3. Download Pre-Trained Model
 ### ONNX Model
 
 The models were converted from the Pytorch implementation below by [PINTO0309](https://github.com/PINTO0309)
-https://github.com/PINTO0309/PINTO_model_zoo/tree/main/284_CREStereo
+Model : https://github.com/PINTO0309/PINTO_model_zoo/tree/main/284_CREStereo
+
 The License of the models is Apache-2.0 License: https://github.com/megvii-research/CREStereo/blob/master/LICENSE
 
 위 링크에서 .sh파일 받아 실행하여 생성된 파일을 models폴더로 옮겨 주세요
@@ -92,11 +95,11 @@ sh [file_you_download]
 저는 `download_iter05_tensorrt.sh`로 모델을 다운로드 받았습니다.
 
 1. Inference
-* Image inference (URL)
+* Image inference (URL로 작동함)
 ```
 python image_depth_estimation.py
 ```
-* Video Inference (Youtube)
+* Video Inference (Youtube URL로 작동함)
 ```
 python video_depth_estimation.py
 ```
