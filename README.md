@@ -48,17 +48,17 @@ Stereo depth estimation on the cones images from the Middlebury dataset (https:/
 ---
 ## Analysis/Visualization
 ## Installation / Inference
-#### My Environment
+#### (참고)My Environment
 * Macbook M1 Chip
 * python3.11
 * No Nvidia GPU
 ---
-1. git clone
+### 1. git clone
 ```
 git clone https://github.com/seongwooPark22/opensw23-SWP.git
 cd opensw23-SWP
 ```
-2. Install requirements 
+### 2. Install requirements 
 
 reqirements.txt 내부를 이렇게 바꿔주세요
 
@@ -76,15 +76,15 @@ Video Inference는 Youtube 영상의 URL을 사용하기때문에
 pip install yt-dlp
 ```
 
-3. Download Pre-Trained Model
-### ONNX Model
+### 3. Download Pre-Trained Model
+#### ONNX Model
 
 The models were converted from the Pytorch implementation below by [PINTO0309](https://github.com/PINTO0309)
+
 Model : https://github.com/PINTO0309/PINTO_model_zoo/tree/main/284_CREStereo
+> The License of the models is Apache-2.0 License: https://github.com/megvii-research/CREStereo/blob/master/LICENSE
 
-The License of the models is Apache-2.0 License: https://github.com/megvii-research/CREStereo/blob/master/LICENSE
-
-위 링크에서 .sh파일 받아 실행하여 생성된 파일을 models폴더로 옮겨 주세요
+위 Model 링크에서 .sh파일 받아 실행하여 생성된 파일을 models폴더로 옮겨 주세요
 ```
 sh [file_you_download]
 ```
