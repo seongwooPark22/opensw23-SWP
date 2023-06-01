@@ -52,7 +52,7 @@ Stereo depth estimation on the cones images from the Middlebury dataset (https:/
 * Macbook M1 Chip
 * python3.11
 * No Nvidia GPU
-
+---
 1. git clone
 ```
 git clone https://github.com/seongwooPark22/opensw23-SWP.git
@@ -65,7 +65,10 @@ reqirements.txt 내부를 이렇게 바꿔주세요
 * 만약 NVIDIA GPU를 사용하는 컴퓨터라면 -> `onnxruntime-gpu` -> 변경X
 * 만약 NVIDIA GPU를 사용하지 않는 컴퓨터라면 : `onnxruntime-gpu` -> `onnxruntime`
 
-수정한 후 -> `pip install -r requirements.txt` 실행
+수정한 후 
+```
+pip install -r requirements.txt
+```
 
 Video Inference는 Youtube 영상의 URL을 사용하기때문에
 이를 실행하기 위해서는 yt-dlp를 설치해야합니다.
