@@ -19,7 +19,7 @@ Depth Map은 컴퓨터 그래픽스에서 요긴하게 이용되는 요소입니
 
 * Depth Map을 활용한 Outline 효과
 ![!depth_outline](./readme_img/depthoutlines.png)
-picture from : https://www.ronja-tutorials.com/post/019-postprocessing-outlines/#normal-outlines
+picture from : https://www.ronja-tutorials.com/post/019-postprocessing-outlines/
 
 하지만 사진등은(비트맵) 픽셀에 대한 정보만을 가지고 있지 깊이 정보를 가지고 있지 않기 때문에
 일반 사진, 영상에서 이 depth을 그냥 만들어낼 수는 없습니다.
