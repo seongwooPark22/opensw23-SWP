@@ -47,8 +47,13 @@ Stereo depth estimation on the cones images from the Middlebury dataset (https:/
 ![!result3](./readme_img/vid_result1.png)
 ---
 ## Analysis/Visualization
+
+Stereo Depth Estimation 분석
+
+사용한 모델별 퀄리티 소개
+
 ## Installation / Inference
-#### (참고)My Environment
+#### (참고) My Environment
 * Macbook M1 Chip
 * python3.11
 * No Nvidia GPU
@@ -92,18 +97,29 @@ sh [file_you_download]
 > 윈도우 사용자라면, .sh 파일을 실행하기 위해 git bash를 사용하거나
 > Cygwin 등을 사용하는 방법이 있으니 참고해주세요
 
+소스코드 (image_depth_estimation.py, video_depth_estimation.py)의 iter과 .sh 파일의 iter이 동일해야 합니다. (기본 5)
+그래서 바로 사용하시려면 iter5인 모델을 다운받으면 좋습니다.
 저는 `download_iter05_tensorrt.sh`로 모델을 다운로드 받았습니다.
 
+iter은 2, 5, 10, 20으로만 설정가능하며 숫자가 클수록 퀄리티가 좋아집니다. 소스코드에서 직접 수정하실 수 있습니다.
+
 1. Inference
-* Image inference (URL로 작동함)
+* Image inference (URL/파일을 인풋으로 작동함)
 ```
 python image_depth_estimation.py
 ```
-* Video Inference (Youtube URL로 작동함)
+해당 파일을 실행하면 어떤 이미지 파일/URL을 사용할지 입력할 수 있습니다.
+```
+Left Image Path (URL or File) : [File path or Image URL]
+Right Image Path (URL or File) : [FIle path or Image URL]
+```
+
+* Video Inference (Youtube 영상의 URL로 작동함)
 ```
 python video_depth_estimation.py
 ```
-위의 코드로 실행하여 결과를 볼 수 있습니다.
-대상 URL을 변경하고 싶다면 스크립트 내부에 있는 경로를 직접 수정해야합니다.
-이는 개선사항이기 때문에 후에 수정을 시도할 것입니다.
+해당 파일을 실행하면 어떤 Youtube 영상을 사용할 지 URL을 입력할 수 있습니다.
+사용가능한 영상의 Format이 정해져 있는데, 아래와 같습니다.
+![Available Youtube Video Format](./readme_img/available_video_format.png)
+
 ### Presentation
