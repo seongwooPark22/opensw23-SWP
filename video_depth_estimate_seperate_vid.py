@@ -17,9 +17,9 @@ def main() :
 
 	version = "combined" # The combined version does 2 passes, one to get an initial estimation and a second one to refine it.
 						# Options: "init", "combined"
-
+	max_distance = 10
 	model_path = f'models/crestereo_{version}_iter{iters}_{input_shape[0]}x{input_shape[1]}.onnx'
-	depth_estimator = CREStereo(model_path, max_dist = 2)
+	depth_estimator = CREStereo(model_path, max_dist = max_distance)
 
 	cv2.namedWindow("Estimated depth", cv2.WINDOW_NORMAL)	
 	while left_vid.isOpened() and right_vid.isOpened():

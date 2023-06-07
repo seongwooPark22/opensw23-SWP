@@ -24,15 +24,22 @@ Depth Map은 컴퓨터 그래픽스에서 요긴하게 이용되는 요소입니
 일반 사진, 영상에서 이 depth을 그냥 만들어낼 수는 없습니다.
 그런 일반 사진에서 depth맵을 estimation하는 것이 이 Repo에서 다루고 있는 것입니다.
 
-### Results
+### Results(Image)
 ### Input1
-![input1_left](./input_files/totoro_left.jpg)
+<p align="center">
+    <img src="./input_files/totoro_left.jpg" width="49%" height="49%"/>
+    <img src="./input_files/totoro_right.jpg" width="49%" height="49%"/>
+</p>
 
 ### Result1
 ![!result1](./readme_img/totoro_result.png)
 ---
 ### Input2
-![input2_left](./input_files/eevee_left.jpg)
+<p align="center">
+    <img src="./input_files/eevee_left.jpg" width="49%" height="49%"/>
+    <img src="./input_files/eevee_right.jpg" width="49%" height="49%"/>
+</p>
+
 ### Result2
 ![!result3](./readme_img/eevee_result.png)
 ---
@@ -41,10 +48,11 @@ Depth Map은 컴퓨터 그래픽스에서 요긴하게 이용되는 요소입니
 사용한 영상 : input_files/video_left.mp4, input_files/video_right.mp4
 ### Results
 <p align="center">
-<img src="./readme_img/vid_giff.gif" width="33%" height="33%"/>
-<img src="./readme_img/vid_giff2.gif" width="33%" height="33%"/>
-<img src="./readme_img/vid_giff3.gif" width="33%" height="33%"/>
+    <img src="./readme_img/vid_giff.gif" width="33%" height="33%"/>
+    <img src="./readme_img/vid_giff2.gif" width="33%" height="33%"/>
+    <img src="./readme_img/vid_giff3.gif" width="33%" height="33%"/>
 </p>
+
 ---
 ## Analysis/Visualization
 
@@ -113,7 +121,7 @@ reqirements.txt 내부를 이렇게 바꿔주세요
 pip install -r requirements.txt
 ```
 
-Video Inference는 Youtube 영상의 URL을 사용하기때문에
+Video Inference 중에서도 video_depth_estimation는 Youtube 영상의 URL을 사용하기때문에
 이를 실행하기 위해서는 yt-dlp를 설치해야합니다.
 ```
 pip install yt-dlp
@@ -141,8 +149,8 @@ sh [file_you_download]
 
 iter은 2, 5, 10, 20으로만 설정가능하며 숫자가 클수록 퀄리티가 좋아집니다. 소스코드에서 직접 수정하실 수 있습니다.
 
-1. Inference
-* Image inference (URL/파일을 인풋으로 작동함)
+### 3. Start Inference
+#### * Image inference (URL/파일을 인풋으로 작동함)
 ```
 python image_depth_estimation.py
 ```
@@ -152,9 +160,9 @@ Left Image Path (URL or File) : [File path or Image URL]
 Right Image Path (URL or File) : [FIle path or Image URL]
 ```
 
-* Video Inference1 (무조건 파일의 경로를 입력하셔야합니다)
+#### * Video Inference1 (무조건 파일의 경로를 입력하셔야합니다)
 ```
-python video_depth_estimation_seperate_file.py
+python video_depth_estimation_seperate_vid.py
 ```
 실행 시
 ```
@@ -163,9 +171,9 @@ Right Video file Path : [File path]
 ```
 왼쪽 영상과 오른쪽 영상이 따로 분리되어있는 경우에 사용합니다. 오로지 파일 경로만을 입력하실 수 있습니다.
 
-* Video Inference2 (Youtube 영상의 URL, 로컬의 파일경로를 인풋으로 동작함)
+#### * Video Inference2 (Youtube 영상의 URL, 로컬의 파일경로를 인풋으로 동작함)
 ```
-python video_depth_estimation.py
+python video_depth_estimation_unified_vid.py
 ```
 실행 시
 ```
@@ -175,7 +183,7 @@ Swap left and right(y/n) : [y/n]
 좌우 영상이 통합된 경우 사용합니다.
 해당 파일을 실행하면 어떤 Youtube 영상을 사용할 지 URL을 입력하거나 가지고 있는 영상 파일의 경로를 입력하실 수 있습니다.
 사용가능한 영상의 Format이 정해져 있는데, 아래와 같습니다.
-![Available Youtube Video Format](./readme_img/available_video_format.png)
+![Available Youtube Video Format](./readme_img/unified_stereovid_format.png)
 
 Swap left and right는 영상의 좌우를 바꿔서 처리할지 물어보는겁니다.
 CrossEye 영상을 사용할 때에 y로 하시면 좋습니다(보통 반대로 되있기 때문)
@@ -184,7 +192,7 @@ q, esc 키를 누르면 영상 Inference에서 빠져나올 수 있게 만들었
 프로그램이 CPU로만 돌아간다면 부하가 많이 걸려 키 입력이 제대로 입력이 되지 않는 경우가 자주 생깁니다.
 그럴 경우에는 실행중인 터미널이나 생성된 윈도우를 강제종료해주시면 됩니다.
 
-2. Additional Script
+### +Additional Script
 ```
 compare_image.py
 ```
@@ -194,4 +202,4 @@ compare_image.py
 
 0에 가까울 수록 비슷한 것이고 1에 가까울수록 다르다는 것입니다.
 예를 들어 같은 이미지를 인풋으로 입력하면 0.0이 출력될겁니다.
-### Presentation
+## Presentation
