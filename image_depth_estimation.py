@@ -1,5 +1,7 @@
 import cv2
 import numpy as np
+from datetime import datetime
+
 from imread_from_url import imread_from_url
 
 from crestereo import CREStereo
@@ -12,7 +14,7 @@ def main() :
 	shape = (240, 320)   # Input resolution. 
 						# Options: (240,320), (320,480), (380, 480), (360, 640), (480,640), (720, 1280)
 
-	version = "init" # The combined version does 2 passes, one to get an initial estimation and a second one to refine it.
+	version = "combined" # The combined version does 2 passes, one to get an initial estimation and a second one to refine it.
 						# Options: "init", "combined"
 
 	# Initialize model
@@ -37,7 +39,7 @@ def main() :
 	color_disparity = depth_estimator.draw_disparity()
 	combined_image = np.hstack((left_img, color_disparity))
 
-	cv2.imwrite("out.jpg", combined_image)
+	cv2.imwrite("out_iter{0}.jpg".format(iters), combined_image)
 
 	cv2.namedWindow("Estimated disparity", cv2.WINDOW_NORMAL)	
 	cv2.imshow("Estimated disparity", combined_image)
@@ -46,4 +48,6 @@ def main() :
 	cv2.destroyAllWindows()
 
 if __name__ == "__main__" :
+	s = datetime.now()
 	main()
+	print("elapsed time",(datetime.now()-s).total_seconds())

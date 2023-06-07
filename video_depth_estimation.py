@@ -19,10 +19,17 @@ def load_youtube_video(URL):
 def main() : 
 	# Initialize video
 	# cap = cv2.VideoCapture("video.mp4")
-	videoUrl = input("Stereo Video URL : ")
+	videoPath = input("Stereo Video URL/Path : ")
+	swap_side = input("Swap left and right(y/n) : ")
+	
+	if 'https://' in videoPath or 'http://' in videoPath : 
+		cap = cv2.VideoCapture(load_youtube_video(videoPath))
+	else :
+		cap = cv2.VideoCapture(videoPath)
+
 	start_time = 0 # skip first {start_time} seconds
-	cap = cv2.VideoCapture(load_youtube_video(videoUrl))
-	# cap.set(cv2.CAP_PROP_POS_FRAMES, start_time*30)
+	
+	cap.set(cv2.CAP_PROP_POS_FRAMES, start_time*30)
 
 	# Model options (not all options supported together)
 	iters = 5            # Lower iterations are faster, but will lower detail. 
@@ -60,6 +67,9 @@ def main() :
 		right_img = frame[:,fs:fs*2]
 
 		# Estimate the depth
+		if swap_side == 'y' :
+			left_img, right_img = right_img, left_img
+		
 		disparity_map = depth_estimator(left_img, right_img)
 		color_depth = depth_estimator.draw_depth()
 		combined_image = np.hstack((left_img, color_depth))
