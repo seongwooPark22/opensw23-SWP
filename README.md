@@ -26,23 +26,23 @@ Depth Map은 컴퓨터 그래픽스에서 요긴하게 이용되는 요소입니
 
 ### Results
 ### Input1
-![input1_left](./input_files/totoro_left.jpg){: width="300" height="300")
+![input1_left](./input_files/totoro_left.jpg)
 
 ### Result1
-![!result1](./readme_img/totoro_result.png){: width="300" height="300")
+![!result1](./readme_img/totoro_result.png)
 ---
 ### Input2
-![input2_left](./input_files/eevee_left.jpg){: width="300" height="300")
+![input2_left](./input_files/eevee_left.jpg)
 ### Result2
-![!result3](./readme_img/eevee_result.png){: width="300" height="300")
+![!result3](./readme_img/eevee_result.png)
 ---
 ## Results(Video)
 ### Input
 사용한 영상 : input_files/video_left.mp4, input_files/video_right.mp4
 ### Results
-![!result3-1](./readme_img/vid_giff.gif){: width="200" height="200"}
-![!result3-2](./readme_img/vid_giff2.gif){: width="200" height="200"}
-![!result3-3](./readme_img/vid_giff3.gif){: width="200" height="200"}
+<img src="./readme_img/vid_giff.gif" width="33%" height="33%"/>
+<img src="./readme_img/vid_giff2.gif" width="33%" height="33%"/>
+<img src="./readme_img/vid_giff3.gif" width="33%" height="33%"/>
 ---
 ## Analysis/Visualization
 
