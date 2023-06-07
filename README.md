@@ -26,30 +26,32 @@ Depth Map은 컴퓨터 그래픽스에서 요긴하게 이용되는 요소입니
 
 ### Results
 ### Input1
-![input1_left](./input_files/totoro_left.jpg)
+![input1_left](./input_files/totoro_left.jpg){: width="300" height="300")
 
 ### Result1
-![!result1](./readme_img/totoro_result.png)
+![!result1](./readme_img/totoro_result.png){: width="300" height="300")
 ---
 ### Input2
-![input2_left](./input_files/eevee_left.jpg)
+![input2_left](./input_files/eevee_left.jpg){: width="300" height="300")
 ### Result2
-![!result3](./readme_img/eevee_result.png)
-Stereo depth estimation on the cones images from the Middlebury dataset (https://vision.middlebury.edu/stereo/data/scenes2003/)
+![!result3](./readme_img/eevee_result.png){: width="300" height="300")
 ---
 ## Results(Video)
 ### Input
 사용한 영상 : input_files/video_left.mp4, input_files/video_right.mp4
 ### Results
-![!result3-1](./readme_img/vid_giff.gif) ![!result3-2](./readme_img/vid_giff2.gif) ![!result3-3](./readme_img/vid_giff3.gif)
+![!result3-1](./readme_img/vid_giff.gif){: width="200" height="200"}
+![!result3-2](./readme_img/vid_giff2.gif){: width="200" height="200"}
+![!result3-3](./readme_img/vid_giff3.gif){: width="200" height="200"}
 ---
 ## Analysis/Visualization
 
-* Stereo Depth Estimation 분석
+#### * Stereo Depth Estimation 분석
 Stereo 방식으로 Depth를 추정한다. Input으로 두개의 영상이 들어가는데, 살짝 왼쪽에서 찍은 사진, 살짝 오른쪽에서 찍은 사진이 필요하다.
 이는 인간이 원근감을 느끼는 방식과 거의 유사함을 알 수 있는데, 왼쪽눈에서 들어오는 정보와 오른쪽 눈에서 들어오는 정보를 규합하여 좌우의 상이 얼마나 변했는지에 따라서 원근감을 느끼게 된다. (먼 곳에 있는 물체는 몸을 움직여도 거의 움직이지 않고 가까이에 있는 물체는 빠르게 움직임을 생각해보자) 이를 인공지능 모델로서 구현해낸 것으로 보인다.
 
-* Cross Eye에 적용해보기
+#### * Cross Eye에 적용해보기
+
 유튜브 영상에서 Cross Eye (한국에서는 흔히들 매직아이라고 부르는)로 3D를 체험할 수 있는 영상들을 찾아 볼 수 있다.
 상술했듯, 사람의 눈과 비슷한 방식으로 depth를 측정한다고 생각하여 여러 영상들을 찾아 적용해보았다.
 매직아이를 할 때 왼쪽눈은 오른쪽 이미지, 오른쪽 눈은 왼쪽 이미지를 보고 초점을 맞추기 때문에 Inference를 할 때
@@ -59,7 +61,7 @@ left와 right를 바꾼 경우, 영상 그대로 사용한 경우로 나누어�
 left와 right를 바꾼 경우에 Output의 퀄리티가 달라지는 흥미로운 결과를 얻을 수 있었다.
 바꾸지 않아도 어느정도 실행이 됨을 알 수 있지만, 바꾼 경우가 육안으로 봐도 더 잘 Estimate함을 알 수 있었다.
 
-* 모델별 Output 디테일 비교 그래프
+#### * 모델별 Output 디테일 비교 그래프
 
 모델들의 디테일과 효율을 따져보기로 했다. (Combined 모델만 사용함)
 모델의 iter과 resolution 늘어나면 늘어날수록 그 퀄리티(디테일)가 좋아질 것이라고 기대할 수 있고
@@ -67,10 +69,10 @@ left와 right를 바꾼 경우에 Output의 퀄리티가 달라지는 흥미로�
 다른 iter, resolution인 모델들의 Output과 비교해보았다.
 
 사용한 데이터는 이것이다. (left 이미지)
-![Model Test Data](./test_img/eevee_left.png)
+![Model Test Data](./input_files/eevee_left.png)
 ![Model Efficiency Test](./readme_img/eevee_model_graph.png)
 
-![Model Test Data2](./test_img/totoro_left.png)
+![Model Test Data2](./input_files/totoro_left.png)
 ![Model Efficiency Test](./readme_img/totoro_model_graph.png)
 
 두 그래프의 평균을 낸 그래프
@@ -181,7 +183,6 @@ q, esc 키를 누르면 영상 Inference에서 빠져나올 수 있게 만들었
 그럴 경우에는 실행중인 터미널이나 생성된 윈도우를 강제종료해주시면 됩니다.
 
 2. Additional Script
-
 ```
 compare_image.py
 ```
