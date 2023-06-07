@@ -40,9 +40,11 @@ Depth Map은 컴퓨터 그래픽스에서 요긴하게 이용되는 요소입니
 ### Input
 사용한 영상 : input_files/video_left.mp4, input_files/video_right.mp4
 ### Results
+<p align="center">
 <img src="./readme_img/vid_giff.gif" width="33%" height="33%"/>
 <img src="./readme_img/vid_giff2.gif" width="33%" height="33%"/>
 <img src="./readme_img/vid_giff3.gif" width="33%" height="33%"/>
+</p>
 ---
 ## Analysis/Visualization
 
@@ -69,10 +71,10 @@ left와 right를 바꾼 경우에 Output의 퀄리티가 달라지는 흥미로�
 다른 iter, resolution인 모델들의 Output과 비교해보았다.
 
 사용한 데이터는 이것이다. (left 이미지)
-![Model Test Data](./input_files/eevee_left.png)
+![Model Test Data](./input_files/eevee_left.jpg)
 ![Model Efficiency Test](./readme_img/eevee_model_graph.png)
 
-![Model Test Data2](./input_files/totoro_left.png)
+![Model Test Data2](./input_files/totoro_left.jpg)
 ![Model Efficiency Test](./readme_img/totoro_model_graph.png)
 
 두 그래프의 평균을 낸 그래프
