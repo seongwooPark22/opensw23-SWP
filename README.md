@@ -24,7 +24,7 @@ Depth Map은 컴퓨터 그래픽스에서 요긴하게 이용되는 요소입니
 일반 사진, 영상에서 이 depth을 그냥 만들어낼 수는 없습니다.
 그런 일반 사진에서 depth맵을 estimation하는 것이 이 Repo에서 다루고 있는 것입니다.
 
-### Results(Image)
+## Results(Image)
 ### Input1
 <p align="center">
     <img src="./input_files/totoro_left.jpg" width="49%" height="49%"/>
@@ -56,16 +56,16 @@ Depth Map은 컴퓨터 그래픽스에서 요긴하게 이용되는 요소입니
 ---
 ## Analysis/Visualization
 
-#### * Stereo Depth Estimation 분석
+#### * Stereo Depth Estimation 원리 분석
 Stereo 방식으로 Depth를 추정한다. Input으로 두개의 영상이 들어가는데, 살짝 왼쪽에서 찍은 사진, 살짝 오른쪽에서 찍은 사진이 필요하다.
 이는 인간이 원근감을 느끼는 방식과 거의 유사함을 알 수 있는데, 왼쪽눈에서 들어오는 정보와 오른쪽 눈에서 들어오는 정보를 규합하여 좌우의 상이 얼마나 변했는지에 따라서 원근감을 느끼게 된다. (먼 곳에 있는 물체는 몸을 움직여도 거의 움직이지 않고 가까이에 있는 물체는 빠르게 움직임을 생각해보자) 이를 인공지능 모델로서 구현해낸 것으로 보인다.
 
 #### * Cross Eye에 적용해보기
 
-유튜브 영상에서 Cross Eye (한국에서는 흔히들 매직아이라고 부르는)로 3D를 체험할 수 있는 영상들을 찾아 볼 수 있다.
-상술했듯, 사람의 눈과 비슷한 방식으로 depth를 측정한다고 생각하여 여러 영상들을 찾아 적용해보았다.
-매직아이를 할 때 왼쪽눈은 오른쪽 이미지, 오른쪽 눈은 왼쪽 이미지를 보고 초점을 맞추기 때문에 Inference를 할 때
-left와 right를 바꾼 경우, 영상 그대로 사용한 경우로 나누어서 퀄리티가 달라지는지 테스트 해보았다.
+유튜브에서 Cross Eye (국내에서는 흔히들 매직아이라고 부르는)로 3D를 체험할 수 있는 영상들을 찾아 볼 수 있었다.
+상술했듯, 사람의 눈과 비슷한 방식으로 depth를 측정한다고 생각하여 여러 CrossEye 영상들을 찾아 적용해보았다.
+매직아이를 할 때 왼쪽눈은 오른쪽 이미지, 오른쪽 눈은 왼쪽 이미지를 보고 상을 맞추기 때문에 Inference를 할 때
+영상의 왼쪽 부분과 오른쪽 부분을 바꿔 입력 받은 경우, 영상 그대로 입력 받은 경우로 나누어서 퀄리티가 달라지는지 테스트 해보았다.
 
 ![Cross Eye Experiment](./readme_img/crossEyeTest.png)
 left와 right를 바꾼 경우에 Output의 퀄리티가 달라지는 흥미로운 결과를 얻을 수 있었다.
@@ -156,28 +156,28 @@ python image_depth_estimation.py
 ```
 해당 파일을 실행하면 어떤 이미지 파일/URL을 사용할지 입력할 수 있습니다.
 ```
-Left Image Path (URL or File) : [File path or Image URL]
-Right Image Path (URL or File) : [FIle path or Image URL]
+Left Image (URL or file path) : [File path or Image URL]
+Right Image (URL or file path) : [FIle path or Image URL]
 ```
 
-#### * Video Inference1 (무조건 파일의 경로를 입력하셔야합니다)
+#### * Video Inference1 (Youtube 영상 URL, 파일의 경로를 인풋으로 동작함)
 ```
 python video_depth_estimation_seperate_vid.py
 ```
 실행 시
 ```
-Left Video file Path : [File path]
-Right Video file Path : [File path]
+Left Video (URL or file path) : [File path or Video URL]
+Right Video (URL or file path) : [File path or Video URL]
 ```
 왼쪽 영상과 오른쪽 영상이 따로 분리되어있는 경우에 사용합니다. 오로지 파일 경로만을 입력하실 수 있습니다.
 
-#### * Video Inference2 (Youtube 영상의 URL, 로컬의 파일경로를 인풋으로 동작함)
+#### * Video Inference2 (Youtube 영상 URL, 파일의 경로를 인풋으로 동작함)
 ```
 python video_depth_estimation_unified_vid.py
 ```
 실행 시
 ```
-Stereo Video URL/Path : [File path or Video URL]
+Stereo Video (URL or file path) : [File path or Video URL]
 Swap left and right(y/n) : [y/n]
 ```
 좌우 영상이 통합된 경우 사용합니다.
@@ -186,7 +186,7 @@ Swap left and right(y/n) : [y/n]
 ![Available Youtube Video Format](./readme_img/unified_stereovid_format.png)
 
 Swap left and right는 영상의 좌우를 바꿔서 처리할지 물어보는겁니다.
-CrossEye 영상을 사용할 때에 y로 하시면 좋습니다(보통 반대로 되있기 때문)
+CrossEye 영상을 사용할 때에 y로 하시면 좋습니다(Cross Eye라서 보통 좌우가 반대로 교차되어 있음)
 
 q, esc 키를 누르면 영상 Inference에서 빠져나올 수 있게 만들었습니다만...
 프로그램이 CPU로만 돌아간다면 부하가 많이 걸려 키 입력이 제대로 입력이 되지 않는 경우가 자주 생깁니다.

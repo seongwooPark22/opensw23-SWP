@@ -19,7 +19,7 @@ def load_youtube_video(URL):
 def main() : 
 	# Initialize video
 	# cap = cv2.VideoCapture("video.mp4")
-	videoPath = input("Stereo Video URL/Path : ")
+	videoPath = input("Stereo Video (URL or file path) : ")
 	swap_side = input("Swap left and right(y/n) : ")
 	
 	if 'https://' in videoPath or 'http://' in videoPath : 

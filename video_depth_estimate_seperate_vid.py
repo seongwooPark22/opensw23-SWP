@@ -1,13 +1,36 @@
 import cv2
 import numpy as np
+import yt_dlp
 import glob
 from crestereo import CREStereo, CameraConfig
 
+def load_youtube_video(URL):
+    ydl_opts = {}
+    with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+        info = ydl.extract_info(URL, download=False)
+        
+    vlist = []
+    for f in info['formats'][::-1] :
+        if f['vcodec'] != 'none' :
+            if f['format_note'] in ['144p', '360p', '720p', '1080p']:
+                vlist.append(f['url'])
+    return vlist[0]
+
 def main() :
 	# Initialize video
-	left_vid = cv2.VideoCapture(input("Left Video file Path : "))
-	right_vid = cv2.VideoCapture(input("Right Video file Path : "))
+	left_vid_src = input("Left Video (URL or file path) : ")
+	if 'https://' in left_vid_src or 'http://' in left_vid_src : 
+		left_vid = cv2.VideoCapture(load_youtube_video(left_vid_src))
+	else :
+		left_vid = cv2.VideoCapture(left_vid_src)
 
+	right_vid_src = input("Right Video (URL or file path) : ")
+
+	if 'https://' in right_vid_src or 'http://' in right_vid_src : 
+		right_vid = cv2.VideoCapture(load_youtube_video(right_vid_src))
+	else :
+		right_vid = cv2.VideoCapture(right_vid_src)
+	
 	# Model options (not all options supported together)
 	iters = 10          # Lower iterations are faster, but will lower detail. 
 						# Options: 2, 5, 10, 20 

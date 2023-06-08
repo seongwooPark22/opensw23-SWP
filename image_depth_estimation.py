@@ -21,8 +21,8 @@ def main() :
 	model_path = f'models/crestereo_{version}_iter{iters}_{shape[0]}x{shape[1]}.onnx'
 	depth_estimator = CREStereo(model_path)
 
-	left_img_src = input("Left Image Path (URL or File) : ")
-	right_img_src = input("Right Image Path (URL or File) : ")
+	left_img_src = input("Left Image (URL or file path) : ")
+	right_img_src = input("Right Image (URL or file path) : ")
 
 	# Load images
 	if 'https://' in left_img_src or 'http://' in left_img_src : 
