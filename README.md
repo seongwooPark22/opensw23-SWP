@@ -139,9 +139,10 @@ left와 right 이미지를 바꾼 경우에 Output의 퀄리티가 달라지는 
 iter20에 720x1280 모델로 생성된 Output을 Best Output으로 가정하고
 다른 iter과 resolution인 모델들의 Output과 비교해보았다.
 
-그래프 X축 : 실행시간 (Elapsed Time)
-그래프 Y축 : Best Output과 얼마나 다른지. (0 = 완전히 같다. 1 = 완전히 다르다)
-점들의 크기 : 점의 크기는 iter의 수(2, 5, 10, 20)와 대응된다 (크기가 제일 큰 것이 20, 제일 작은 것이 2라고 생각하면 된다.)
+> 그래프 X축 : 실행시간 (Elapsed Time)
+> 그래프 Y축 : Best Output과 얼마나 다른지. (0 = 완전히 같다. 1 = 완전히 다르다)
+> 점들의 크기 : 점의 크기는 iter의 수(2, 5, 10, 20)와 대응된다 (크기가 제일 큰 것이 20, 제일 작은 것이 2라고 생각하면 된다.)
+
 #### Comparing Graph1
 <p align="center">
     <img src="./input_files/eevee_left.jpg" width="50%" height="50%"/>
@@ -200,7 +201,7 @@ reqirements.txt 내부를 이렇게 바꿔주세요
 pip install -r requirements.txt
 ```
 
-Video Inference 중에서도 video_depth_estimation는 Youtube 영상의 URL을 사용하기때문에
+Video Inference는 Youtube 영상의 URL을 사용할 수 있기 때문에
 이를 실행하기 위해서는 yt-dlp를 설치해야합니다.
 ```
 pip install yt-dlp
@@ -226,8 +227,8 @@ Inference 스크립트인 image_depth_estimation.py, video_depth_estimate_sepera
 그래서 사용하길 원하는 iter의 모델과 소스코드 내부의 iters의 값을 일치시켜주세요.
 iter은 2, 5, 10, 20으로만 설정가능하며 숫자가 클수록 디테일이 좋아지고 느려집니다. 소스코드에서 직접 수정하실 수 있습니다.
 
-resolution의 경우도 소스코드를 직접 수정해서 사용하셔야합니다. 존재하는 모델과 일치시켜 주세요.
-마찬가지로 숫자가 클수록 디테일이 좋아지고 느려집니다.
+resolution의 경우도 소스코드를 직접 수정해서 사용하셔야합니다. model_shape라는 변수를 존재하는 모델과 일치시켜 주세요.
+숫자가 클수록 Output의 해상도가 좋아지고 느려집니다.
 
 그래서 바로 사용하시려면 iter5인 모델을 다운받으면 좋습니다. (기본 5라서)
 저는 `download_iter05_tensorrt.sh`로 모델을 다운로드 받았습니다.
@@ -276,7 +277,8 @@ q, esc 키를 누르면 영상 Inference에서 빠져나올 수 있게 만들었
 그럴 경우에는 실행한 터미널과 생성된 윈도우를 작업관리자 등에서 강제종료해주세요.
 
 상술했듯이 사용하는 모델을 바꾸기 위해서는 각 Inference 스크립트들의 소스코드를 수정하시면 됩니다.
-iters는 모델의 iter부분, 그리고 model_shape는 모델의 resolution을 의미합니다. 
+> iters : 모델의 iter부분을 의미
+> model_shape : 모델의 resolution을 의미합니다. 
 
 또한 Video Inference 스크립트들의 경우 max_distance를 가지고 있습니다.
 말 그대로 최대 거리를 의미하는 변수로 이를 조정하여 Output에 변화를 줄 수 있습니다.
