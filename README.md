@@ -49,14 +49,15 @@ Depth Map은 컴퓨터 그래픽스에서 요긴하게 이용되는 요소입니
 ### Result2
 <img src="./readme_img/eevee_result.png" width="50%" height="50%" align = "center"/>
 
+---
 ### Input3
 <p align="center">
-    <img src="./input_files/pantablet_left.jpg" width="49%" height="49%"/>
-    <img src="./input_files/pantablet_right.jpg" width="49%" height="49%"/>
+    <img src="./input_files/cupandearphone_left.jpg" width="49%" height="49%"/>
+    <img src="./input_files/cupandearphone_right.jpg" width="49%" height="49%"/>
 </p>
 
 ### Result3
-<img src="./readme_img/pantablet_result.png" width="50%" height="50%" align = "center"/>
+<img src="./readme_img/cupandearphone1_result.png" width="50%" height="50%" align = "center"/>
 
 ---
 ## Results(Video)
@@ -69,12 +70,16 @@ Depth Map은 컴퓨터 그래픽스에서 요긴하게 이용되는 요소입니
     <img src="./readme_img/vid_giff3.gif" width="30%" height="30%"/>
 </p>
 
+---
+
 ### Input2
 사용한 영상 : input_files/video2_left.mp4, input_files/video2_right.mp4
 ### Result2
 <p align="center">
     <img src="./readme_img/vid2_giff.gif" width="50%" height="50%"/>
 </p>
+
+---
 
 ### Input3
 유튜브 영상도 재생 됌을 시연하기 위하여 유튜브에서 찾은 영상을 사용했습니다.
@@ -89,32 +94,35 @@ Depth Map은 컴퓨터 그래픽스에서 요긴하게 이용되는 요소입니
 
 ## Analysis/Visualization
 
-#### * Stereo Depth Estimation 원리 분석
+### * Stereo Depth Estimation 원리 분석
 Stereo 방식으로 Input으로 두개의 영상이 사용되며, 왼쪽 input, 오른쪽 input의 차이로 Depth를 추정한다.
 이는 인간이 원근감을 느끼는 방식과 거의 유사함을 알 수 있는데
 <p align="center">
-<img src="./readme_img/human_sight_principle.png" width="50%" height="50%"/>
+    <img src="./readme_img/human_sight_principle.png" width="50%" height="50%"/>
 </p>
 사람의 눈은 위 그림처럼, 왼쪽눈에서 들어오는 정보와 오른쪽 눈에서 들어오는 정보를 규합하여
 좌우의 상이 얼마나, 어떻게 다른지에 따라서 원근감을 느끼게 된다.
 이를 인공지능 모델로서 유사하게 구현해낸 것으로 보인다.
 
-#### * Cross Eye에 적용해보기
+### * Cross Eye에 적용해보기
 
-유튜브에서 Cross Eye (국내에서는 흔히들 매직아이라고 부르는)로 3D를 체험할 수 있는 영상들을 찾아 볼 수 있었다.
-상술했듯, 사람의 눈과 비슷한 방식으로 depth를 측정한다고 생각하여 여러 CrossEye 영상들을 찾아 적용해보았다.
+사람의 눈과 비슷한 방식으로 depth를 측정한다고 생각하여 여러 CrossEye 영상들을 찾아 적용해 결과를 보고 싶었다.
 <p align="center">
-<img src="./readme_img/cross_eye_principle.png" width="50%" height="50%" />
+    <img src="./readme_img/cross_eye_principle.png" width="50%" height="50%" />
 </p>
+
 위처럼 왼쪽눈은 오른쪽 이미지, 오른쪽 눈은 왼쪽 이미지를 보고 상을 맞추기 때문에
-Inference를 할 때 영상의 왼쪽 부분과 오른쪽 부분을 바꿔 입력 받은 경우
-그리고 영상 그대로 입력 받은 경우로 나누어서 퀄리티가 달라지는지 테스트 해보았다.
+Inference를 할 때 영상의 왼쪽 부분과 오른쪽 부분을 바꿔 입력 받은 경우 바꾸지 않은 경우로 나누어 퀄리티가 달라지는지 테스트 해보았다.
+
+내가 직접 데이터를 만들어내면 이런 결과가 나오게 유도할 수 있기 때문에 외부의 영상(Youtube 영상)을 데이터로 사용하였다.
+* 영상1 : https://youtu.be/QXPpUpD_oak
+* 영상2 : https://youtu.be/4L-We9onn9s
 
 ![Cross Eye Experiment](./readme_img/crossEyeTest.png)
-left와 right를 바꾼 경우에 Output의 퀄리티가 달라지는 흥미로운 결과를 얻을 수 있었다.
-바꾸지 않아도 어느정도 실행이 됨을 알 수 있지만, 바꾼 경우가 육안으로 봐도 더 잘 Estimate함을 알 수 있었다.
+left와 right 이미지를 바꾼 경우에 Output의 퀄리티가 달라지는 흥미로운 결과를 얻을 수 있었다.
+바꾸지 않아도 어느정도 실행이 됨을 알 수 있지만, 바꾼 경우가 육안으로 봐도 더 잘 추론해냄을 알 수 있었다.
 
-#### * 모델별 Output 디테일 비교 그래프
+### * 모델별 Output 디테일 비교 그래프
 
 모델들의 디테일과 효율을 따져보기로 했다. (Combined 모델만 사용함)
 
@@ -127,14 +135,21 @@ left와 right를 바꾼 경우에 Output의 퀄리티가 달라지는 흥미로�
 iter20에 720x1280 모델로 생성된 Output을 Best Output으로 가정하고
 다른 iter과 resolution인 모델들의 Output과 비교해보았다.
 
-사용한 데이터는 이것이다. (left 이미지)
-![Model Test Data](./input_files/eevee_left.jpg)
+#### Comparing Graph1
+<p align="center">
+    <img src="./input_files/eevee_left.jpg" width="50%" height="50%"/>
+</p>
+
 ![Model Efficiency Test](./readme_img/eevee_model_graph.png)
+---
+#### Comparing Graph2
+<p align="center">
+    <img src="./input_files/totoro_left.jpg" width="50%" height="50%"/>
+</p>
 
-![Model Test Data2](./input_files/totoro_left.jpg)
 ![Model Efficiency Test](./readme_img/totoro_model_graph.png)
-
-두 그래프의 평균을 낸 그래프
+---
+#### Average Graph
 ![Model Efficiency Test](./readme_img/avg_model_graph.png)
 
 그래프를 분석해보자면
@@ -149,8 +164,11 @@ iter20에 720x1280 모델로 생성된 Output을 Best Output으로 가정하고
 #### * Some Weird Results
 <p align = "left">
     <img src="./readme_img/weird_result1.png" width = "30%" height = "30%">
+    <img src="./readme_img/paperbag_result.png" width = "30%" height = "30%">
 </p>
 
+1번 결과 : 이어폰 선으로 생긴 원으로 뒤의 배경이 비치는데, 좌우의 사진에서 모두 비슷한 색의 배경이 찍히면서 면처럼 인식한 모양이다.
+2번 결과 : 마찬가지로 배경, 혹은 글자의 대비가 너무 강해서 생기는 문제인 것 같다.
 ## Installation / Inference
 #### (참고) Tested Device
 * Macbook M1 Chip, python3.11
