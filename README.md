@@ -143,13 +143,17 @@ sh [file_you_download]
 > 윈도우 사용자라면, .sh 파일을 실행하기 위해 git bash를 사용하거나
 > Cygwin 등을 사용하는 방법이 있으니 참고해주세요
 
-소스코드 (image_depth_estimation.py, video_depth_estimation.py)의 iter과 .sh 파일의 iter이 동일해야 합니다. (기본 5)
-그래서 바로 사용하시려면 iter5인 모델을 다운받으면 좋습니다.
+Inference 스크립트인 image_depth_estimation.py, video_depth_estimate_seperate_vid.py, video_depth_estimation_unified_vid.py는 소스코드에 명시된 iter과 resolution의 모델을 불러와 동작합니다.
+그래서 사용하길 원하는 iter의 모델과 소스코드 내부의 iters의 값을 일치시켜주세요.
+iter은 2, 5, 10, 20으로만 설정가능하며 숫자가 클수록 디테일이 좋아지고 느려집니다. 소스코드에서 직접 수정하실 수 있습니다.
+
+resolution의 경우도 소스코드를 직접 수정해서 사용하셔야합니다. 존재하는 모델과 일치시켜 주세요.
+마찬가지로 숫자가 클수록 디테일이 좋아지고 느려집니다.
+
+그래서 바로 사용하시려면 iter5인 모델을 다운받으면 좋습니다. (기본 5라서)
 저는 `download_iter05_tensorrt.sh`로 모델을 다운로드 받았습니다.
 
-iter은 2, 5, 10, 20으로만 설정가능하며 숫자가 클수록 퀄리티가 좋아집니다. 소스코드에서 직접 수정하실 수 있습니다.
-
-### 3. Start Inference
+### 4. Start Inference
 #### * Image inference (URL/파일을 인풋으로 작동함)
 ```
 python image_depth_estimation.py
@@ -169,7 +173,7 @@ python video_depth_estimation_seperate_vid.py
 Left Video (URL or file path) : [File path or Video URL]
 Right Video (URL or file path) : [File path or Video URL]
 ```
-왼쪽 영상과 오른쪽 영상이 따로 분리되어있는 경우에 사용합니다. 오로지 파일 경로만을 입력하실 수 있습니다.
+상술한 이미지 Inference처럼 왼쪽과 오른쪽이 각각 다른 파일, 영상으로 따로 분리되어있는 경우에 사용합니다.
 
 #### * Video Inference2 (Youtube 영상 URL, 파일의 경로를 인풋으로 동작함)
 ```
@@ -182,7 +186,7 @@ Swap left and right(y/n) : [y/n]
 ```
 좌우 영상이 통합된 경우 사용합니다.
 해당 파일을 실행하면 어떤 Youtube 영상을 사용할 지 URL을 입력하거나 가지고 있는 영상 파일의 경로를 입력하실 수 있습니다.
-사용가능한 영상의 Format이 정해져 있는데, 아래와 같습니다.
+사용가능한 영상의 Format이 정해져 있는데, 아래와 같이 반으로 나뉘어진 영상들을 사용할 수 있습니다.
 ![Available Youtube Video Format](./readme_img/unified_stereovid_format.png)
 
 Swap left and right는 영상의 좌우를 바꿔서 처리할지 물어보는겁니다.
@@ -190,7 +194,7 @@ CrossEye 영상을 사용할 때에 y로 하시면 좋습니다(Cross Eye라서 
 
 q, esc 키를 누르면 영상 Inference에서 빠져나올 수 있게 만들었습니다만...
 프로그램이 CPU로만 돌아간다면 부하가 많이 걸려 키 입력이 제대로 입력이 되지 않는 경우가 자주 생깁니다.
-그럴 경우에는 실행중인 터미널이나 생성된 윈도우를 강제종료해주시면 됩니다.
+그럴 경우에는 실행한 터미널과 생성된 윈도우를 작업관리자 등에서 강제종료해주세요.
 
 ### +Additional Script
 ```

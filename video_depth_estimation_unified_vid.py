@@ -36,7 +36,7 @@ def main() :
 						# Options: 2, 5, 10, 20 
 
 	input_shape = (320, 480)   # Input resolution. 
-						# Options: (240,320), (320,480), (380, 480), (360, 640), (480,640), (720, 1280)
+						# Options: (240,320), (320,480), (360, 640), (480,640), (720, 1280)
 
 	version = "combined" # The combined version does 2 passes, one to get an initial estimation and a second one to refine it.
 						# Options: "init", "combined"
