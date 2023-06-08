@@ -26,7 +26,10 @@ Depth Map은 컴퓨터 그래픽스에서 요긴하게 이용되는 요소입니
 
 ## Results(Image)
 
-직접 수집한 데이터는 좌우 한쌍으로 총 9쌍을 준비했고, 8쌍은 이미지, 1쌍은 동영상으로 준비했습니다.
+직접 수집한 데이터는 좌우 한쌍으로 총 10쌍을 준비했고, 8쌍은 이미지, 2쌍은 동영상으로 준비했습니다.
+
+스테레오 카메라를 이용해야 가장 정확한 데이터를 얻을 수 있지만, 해당 기기를 가지고 있지 않기 때문에
+직접 종이 등에 길이를 측정하고 재단하여 기준을 만들어 휴대전화를 이용하여 데이터를 만들었습니다.
 ### Input1
 <p align="center">
     <img src="./input_files/totoro_left.jpg" width="49%" height="49%"/>
@@ -34,7 +37,8 @@ Depth Map은 컴퓨터 그래픽스에서 요긴하게 이용되는 요소입니
 </p>
 
 ### Result1
-![!result1](./readme_img/totoro_result.png)
+<img src="./readme_img/totoro_result.png" width="50%" height="50%" align = "center"/>
+
 ---
 ### Input2
 <p align="center">
@@ -43,25 +47,54 @@ Depth Map은 컴퓨터 그래픽스에서 요긴하게 이용되는 요소입니
 </p>
 
 ### Result2
-![!result3](./readme_img/eevee_result.png)
+<img src="./readme_img/eevee_result.png" width="50%" height="50%" align = "center"/>
+
+### Input3
+<p align="center">
+    <img src="./input_files/pantablet_left.jpg" width="49%" height="49%"/>
+    <img src="./input_files/pantablet_right.jpg" width="49%" height="49%"/>
+</p>
+
+### Result3
+<img src="./readme_img/pantablet_result.png" width="50%" height="50%" align = "center"/>
+
 ---
 ## Results(Video)
-### Input
+### Input1
 사용한 영상 : input_files/video_left.mp4, input_files/video_right.mp4
-### Results
+### Result1
 <p align="center">
-    <img src="./readme_img/vid_giff.gif" width="33%" height="33%"/>
-    <img src="./readme_img/vid_giff2.gif" width="33%" height="33%"/>
-    <img src="./readme_img/vid_giff3.gif" width="33%" height="33%"/>
+    <img src="./readme_img/vid_giff.gif" width="30%" height="30%"/>
+    <img src="./readme_img/vid_giff2.gif" width="30%" height="30%"/>
+    <img src="./readme_img/vid_giff3.gif" width="30%" height="30%"/>
+</p>
+
+### Input2
+사용한 영상 : input_files/video2_left.mp4, input_files/video2_right.mp4
+### Result2
+<p align="center">
+    <img src="./readme_img/vid2_giff.gif" width="50%" height="50%"/>
+</p>
+
+### Input3
+유튜브 영상도 재생 됌을 시연하기 위하여 유튜브에서 찾은 영상을 사용했습니다.
+영상 : https://youtu.be/fs_Uw4qL2O8
+
+### Result3
+<p align="center">
+    <img src="./readme_img/vid3_giff.gif" width="50%" height="50%"/>
 </p>
 
 ---
+
 ## Analysis/Visualization
 
 #### * Stereo Depth Estimation 원리 분석
 Stereo 방식으로 Input으로 두개의 영상이 사용되며, 왼쪽 input, 오른쪽 input의 차이로 Depth를 추정한다.
 이는 인간이 원근감을 느끼는 방식과 거의 유사함을 알 수 있는데
-<img src="./readme_img/human_sight_principle.png" width="50%" height="50%" align="center"/>
+<p align="center">
+<img src="./readme_img/human_sight_principle.png" width="50%" height="50%"/>
+</p>
 사람의 눈은 위 그림처럼, 왼쪽눈에서 들어오는 정보와 오른쪽 눈에서 들어오는 정보를 규합하여
 좌우의 상이 얼마나, 어떻게 다른지에 따라서 원근감을 느끼게 된다.
 이를 인공지능 모델로서 유사하게 구현해낸 것으로 보인다.
@@ -70,7 +103,9 @@ Stereo 방식으로 Input으로 두개의 영상이 사용되며, 왼쪽 input, 
 
 유튜브에서 Cross Eye (국내에서는 흔히들 매직아이라고 부르는)로 3D를 체험할 수 있는 영상들을 찾아 볼 수 있었다.
 상술했듯, 사람의 눈과 비슷한 방식으로 depth를 측정한다고 생각하여 여러 CrossEye 영상들을 찾아 적용해보았다.
-<img src="./readme_img/cross_eye_principle.png" width="50%" height="50%" aling="center"/>
+<p align="center">
+<img src="./readme_img/cross_eye_principle.png" width="50%" height="50%" />
+</p>
 위처럼 왼쪽눈은 오른쪽 이미지, 오른쪽 눈은 왼쪽 이미지를 보고 상을 맞추기 때문에
 Inference를 할 때 영상의 왼쪽 부분과 오른쪽 부분을 바꿔 입력 받은 경우
 그리고 영상 그대로 입력 받은 경우로 나누어서 퀄리티가 달라지는지 테스트 해보았다.
@@ -84,7 +119,7 @@ left와 right를 바꾼 경우에 Output의 퀄리티가 달라지는 흥미로�
 모델들의 디테일과 효율을 따져보기로 했다. (Combined 모델만 사용함)
 
 ![Model iter detail Test](./readme_img/visualization1.png)
-위 결과를 통해서 모델의 iter가 늘어나면 늘어날 수록 그 디테일이 늘어남을 알 수 있다.
+위 결과를 통해서 모델의 iter가 늘어나면 늘어날 수록 그 구분감과 Boundary가 깨끗해져 디테일이 올라가는 것을 알 수 있다.
 
 사용하는 모델의 iter이 늘어나면 디테일이 좋아짐을 위 결과에서 알 수 있고.
 모델의 resolution이 늘어나면 (input의 해상도가 아님) 모델이 만들어내는 Output의 해상도가 높아질 것이기 때문에 
@@ -110,6 +145,11 @@ iter20에 720x1280 모델로 생성된 Output을 Best Output으로 가정하고
 480x640 중에서도 iter10이 가장 효율이 좋다고 할 수 있다.
 
 만약 실행속도를 더 챙기고 싶다면, 480x640모델에서 iter2모델, 혹은 240x320모델의 iter5모델을 사용하는 것이 좋을 것이다.
+
+#### * Some Weird Results
+<p align = "left">
+    <img src="./readme_img/weird_result1.png" width = "30%" height = "30%">
+</p>
 
 ## Installation / Inference
 #### (참고) Tested Device
@@ -221,3 +261,4 @@ compare_image.py
 0에 가까울 수록 비슷한 것이고 1에 가까울수록 다르다는 것입니다.
 예를 들어 같은 이미지를 인풋으로 입력하면 0.0이 출력될겁니다.
 ## Presentation
+Youtube Link
