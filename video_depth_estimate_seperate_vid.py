@@ -35,13 +35,12 @@ def main() :
 	iters = 10          # Lower iterations are faster, but will lower detail. 
 						# Options: 2, 5, 10, 20 
 
-	input_shape = (320, 480)   # Input resolution. 
-						# Options: (240,320), (320,480), (360, 640), (480,640), (720, 1280)
+	model_shape = (320, 480) # Options: (240,320), (320,480), (360, 640), (480,640), (720, 1280)
 
 	version = "combined" # The combined version does 2 passes, one to get an initial estimation and a second one to refine it.
 						# Options: "init", "combined"
 	max_distance = 10
-	model_path = f'models/crestereo_{version}_iter{iters}_{input_shape[0]}x{input_shape[1]}.onnx'
+	model_path = f'models/crestereo_{version}_iter{iters}_{model_shape[0]}x{model_shape[1]}.onnx'
 	depth_estimator = CREStereo(model_path, max_dist = max_distance)
 
 	cv2.namedWindow("Estimated depth", cv2.WINDOW_NORMAL)	

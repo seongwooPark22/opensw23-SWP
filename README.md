@@ -24,12 +24,15 @@ Depth Map은 컴퓨터 그래픽스에서 요긴하게 이용되는 요소입니
 일반 사진, 영상에서 이 depth을 그냥 만들어낼 수는 없습니다.
 그런 일반 사진에서 depth맵을 estimation하는 것이 이 Repo에서 다루고 있는 것입니다.
 
-## Results(Image)
-
+## Data Collecting
 직접 수집한 데이터는 좌우 한쌍으로 총 10쌍을 준비했고, 8쌍은 이미지, 2쌍은 동영상으로 준비했습니다.
 
 스테레오 카메라를 이용해야 가장 정확한 데이터를 얻을 수 있지만, 해당 기기를 가지고 있지 않기 때문에
 직접 종이 등에 길이를 측정하고 재단하여 기준을 만들어 휴대전화를 이용하여 데이터를 만들었습니다.
+
+혹은 지인에게 휴대전화를 빌려서 두개를 붙여서 영상을 촬영하는 식으로, 스테레오 카메라를 그나마 따라하여 촬영하였습니다.
+## Results(Image)
+
 ### Input1
 <p align="center">
     <img src="./input_files/totoro_left.jpg" width="49%" height="49%"/>
@@ -96,6 +99,7 @@ Depth Map은 컴퓨터 그래픽스에서 요긴하게 이용되는 요소입니
 
 ### * Stereo Depth Estimation 원리 분석
 Stereo 방식으로 Input으로 두개의 영상이 사용되며, 왼쪽 input, 오른쪽 input의 차이로 Depth를 추정한다.
+(가까운건 밝게, 먼 것은 어둡게 표시)
 이는 인간이 원근감을 느끼는 방식과 거의 유사함을 알 수 있는데
 <p align="center">
     <img src="./readme_img/human_sight_principle.png" width="50%" height="50%"/>
@@ -135,6 +139,9 @@ left와 right 이미지를 바꾼 경우에 Output의 퀄리티가 달라지는 
 iter20에 720x1280 모델로 생성된 Output을 Best Output으로 가정하고
 다른 iter과 resolution인 모델들의 Output과 비교해보았다.
 
+그래프 X축 : 실행시간 (Elapsed Time)
+그래프 Y축 : Best Output과 얼마나 다른지. (0 = 완전히 같다. 1 = 완전히 다르다)
+점들의 크기 : 점의 크기는 iter의 수(2, 5, 10, 20)와 대응된다 (크기가 제일 큰 것이 20, 제일 작은 것이 2라고 생각하면 된다.)
 #### Comparing Graph1
 <p align="center">
     <img src="./input_files/eevee_left.jpg" width="50%" height="50%"/>
@@ -167,8 +174,8 @@ iter20에 720x1280 모델로 생성된 Output을 Best Output으로 가정하고
     <img src="./readme_img/paperbag_result.png" width = "30%" height = "30%">
 </p>
 
-1번 결과 : 이어폰 선으로 생긴 원으로 뒤의 배경이 비치는데, 좌우의 사진에서 모두 비슷한 색의 배경이 찍히면서 면처럼 인식한 모양이다.
-2번 결과 : 마찬가지로 배경, 혹은 글자의 대비가 너무 강해서 생기는 문제인 것 같다.
+이어폰 선으로 생긴 원으로 뒤의 배경이 비치는데, 좌우의 사진에서 모두 비슷한 색의 배경이 찍히면서 면처럼 인식한 모양이다.
+중간의 사진도 마찬가지로 글자의 배경이 되는 종이의 색상의 유사성과 그리고 글자의 대비가 너무 강해서 생기는 문제라고 생각한다.
 ## Installation / Inference
 #### (참고) Tested Device
 * Macbook M1 Chip, python3.11
@@ -267,6 +274,13 @@ CrossEye 영상을 사용할 때에 y로 하시면 좋습니다(Cross Eye라서 
 q, esc 키를 누르면 영상 Inference에서 빠져나올 수 있게 만들었습니다만...
 프로그램이 CPU로만 돌아간다면 부하가 많이 걸려 키 입력이 제대로 입력이 되지 않는 경우가 자주 생깁니다.
 그럴 경우에는 실행한 터미널과 생성된 윈도우를 작업관리자 등에서 강제종료해주세요.
+
+상술했듯이 사용하는 모델을 바꾸기 위해서는 각 Inference 스크립트들의 소스코드를 수정하시면 됩니다.
+iters는 모델의 iter부분, 그리고 model_shape는 모델의 resolution을 의미합니다. 
+
+또한 Video Inference 스크립트들의 경우 max_distance를 가지고 있습니다.
+말 그대로 최대 거리를 의미하는 변수로 이를 조정하여 Output에 변화를 줄 수 있습니다.
+만약 Output이 너무 밝다면 max_distance가 너무 높은 것일 수도 있으니 조정해봅시다.
 
 ### +Additional Script
 ```
