@@ -32,7 +32,7 @@ def main() :
 		right_vid = cv2.VideoCapture(right_vid_src)
 	
 	# Model options (not all options supported together)
-	iters = 10          # Lower iterations are faster, but will lower detail. 
+	iters = 5          # Lower iterations are faster, but will lower detail. 
 						# Options: 2, 5, 10, 20 
 
 	model_shape = (320, 480) # Options: (240,320), (320,480), (360, 640), (480,640), (720, 1280)

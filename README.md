@@ -136,7 +136,7 @@ left와 right 이미지를 바꾼 경우에 Output의 퀄리티가 달라지는 
 사용하는 모델의 iter이 늘어나면 디테일이 좋아짐을 위 결과에서 알 수 있고.    
 모델의 resolution이 늘어나면 (input의 해상도가 아님) 모델이 만들어내는 Output의 해상도가 높아질 것이기 때문에 
 
-iter20에 720x1280 모델로 생성된 Output을 Best Output으로 가정하고    
+데이터 2개를 사용하여 iter20에 720x1280 모델로 생성된 Output을 Best Output으로 가정하고    
 다른 iter과 resolution인 모델들의 Output과 비교해보았다.
 
 > 그래프 X축 : 실행시간 (Elapsed Time)    
@@ -295,4 +295,4 @@ compare_image.py
 0에 가까울 수록 비슷한 것이고 1에 가까울수록 다르다는 것입니다.    
 예를 들어 같은 이미지를 인풋으로 입력하면 0.0이 출력될겁니다.    
 ## Presentation
-Youtube Link
+Youtube Link : https://youtu.be/uQuQDJvVHSE

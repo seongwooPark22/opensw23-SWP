@@ -7,6 +7,7 @@ from imread_from_url import imread_from_url
 from crestereo import CREStereo
 
 def main() :
+	s = datetime.now()
 	# Model Selection options (not all options supported together)
 	iters = 5            # Lower iterations are faster, but will lower detail. 
 						# Options: 2, 5, 10, 20 
@@ -42,11 +43,12 @@ def main() :
 
 	cv2.namedWindow("Estimated disparity", cv2.WINDOW_NORMAL)	
 	cv2.imshow("Estimated disparity", combined_image)
+	print("elapsed time",(datetime.now()-s).total_seconds())
+	
 	cv2.waitKey(0)
 
 	cv2.destroyAllWindows()
 
 if __name__ == "__main__" :
-	s = datetime.now()
 	main()
-	print("elapsed time",(datetime.now()-s).total_seconds())
+	
