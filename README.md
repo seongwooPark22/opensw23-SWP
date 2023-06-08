@@ -61,7 +61,7 @@ Depth Map은 컴퓨터 그래픽스에서 요긴하게 이용되는 요소입니
 #### * Stereo Depth Estimation 원리 분석
 Stereo 방식으로 Input으로 두개의 영상이 사용되며, 왼쪽 input, 오른쪽 input의 차이로 Depth를 추정한다.
 이는 인간이 원근감을 느끼는 방식과 거의 유사함을 알 수 있는데
-![Human Eyes](./readme_img/human_sight_principle.png)
+<img src="./readme_img/human_sight_principle.png" width="50%" height="50%" align="center"/>
 사람의 눈은 위 그림처럼, 왼쪽눈에서 들어오는 정보와 오른쪽 눈에서 들어오는 정보를 규합하여
 좌우의 상이 얼마나, 어떻게 다른지에 따라서 원근감을 느끼게 된다.
 이를 인공지능 모델로서 유사하게 구현해낸 것으로 보인다.
@@ -70,7 +70,7 @@ Stereo 방식으로 Input으로 두개의 영상이 사용되며, 왼쪽 input, 
 
 유튜브에서 Cross Eye (국내에서는 흔히들 매직아이라고 부르는)로 3D를 체험할 수 있는 영상들을 찾아 볼 수 있었다.
 상술했듯, 사람의 눈과 비슷한 방식으로 depth를 측정한다고 생각하여 여러 CrossEye 영상들을 찾아 적용해보았다.
-![Cross Eye 3d](./readme_img/cross_eye_principle.png)
+<img src="./readme_img/cross_eye_principle.png" width="50%" height="50%" aling="center"/>
 위처럼 왼쪽눈은 오른쪽 이미지, 오른쪽 눈은 왼쪽 이미지를 보고 상을 맞추기 때문에
 Inference를 할 때 영상의 왼쪽 부분과 오른쪽 부분을 바꿔 입력 받은 경우
 그리고 영상 그대로 입력 받은 경우로 나누어서 퀄리티가 달라지는지 테스트 해보았다.
